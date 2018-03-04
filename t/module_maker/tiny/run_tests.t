@@ -66,7 +66,10 @@ sub test_by {
         return $?;
     }
     else {
+        open STDOUT, ">", File::Spec->devnull;
+        open STDERR, ">", File::Spec->devnull;
         Minilla::CLI->new->run('test', $run_opt);
+        exit;
     }
 }
 

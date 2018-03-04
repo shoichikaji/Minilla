@@ -43,6 +43,8 @@ subtest 'No Changes' => sub {
     git_commit('-m', 'initial import');
 
     eval {
+        open my $fh, ">", \my $stderr;
+        local *STDERR = $fh;
         Minilla::Migrate->new->run();
     };
     my $e = $@;
